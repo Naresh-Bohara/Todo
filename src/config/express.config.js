@@ -1,5 +1,5 @@
 const express = require("express");
-const path = require("path"); // Make sure to import path module
+const path = require("path"); 
 const HttpStatus = require("../constats/http-status.constants");
 require("./db.config");
 const router = require("./todo.config");
@@ -8,10 +8,8 @@ const application = express();
 const methodOverride = require("method-override");
 application.use(methodOverride("_method"));
 
-// Set EJS as the view engine
 application.set('view engine', 'ejs');
 
-// Set the path to the views directory using path.join
 application.set('views', path.join(__dirname, '../views')); // Correct path resolution
 
 application.use(express.json());
@@ -26,7 +24,7 @@ application.use("/health", (req, res) => {
 
 // main router
 application.get("/", (req, res) => {
-    res.render("home");  // Renders home.ejs file
+    res.render("home");  
 });
 
 application.use("/api/v1", router);
