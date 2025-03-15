@@ -25,6 +25,10 @@ application.use("/health", (req, res) => {
 });
 
 // main router
+application.get("/", (req, res) => {
+    res.render("home");  // Renders home.ejs file
+});
+
 application.use("/api/v1", router);
 
 // not found handler
