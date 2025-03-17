@@ -21,6 +21,23 @@ class TodoService {
         }
     }
 
+    transformEditDTO = async (req) => {
+        try {
+            const { title, description, status } = req;
+    
+            const formattedData = {};
+    
+            if (title !== undefined) formattedData.title = title;
+            if (description !== undefined) formattedData.description = description;
+            if (status !== undefined) formattedData.status = status;
+    
+            return formattedData;
+        } catch (exception) {
+            throw exception;
+        }
+    };
+    
+
     createTodo = async(data)=>{
         try{
             const todoObj = new TodoModel(data)

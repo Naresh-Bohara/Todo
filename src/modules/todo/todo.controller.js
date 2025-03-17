@@ -52,15 +52,18 @@ class TodoController {
 
     update = async (req, res, next) => {
         try {
-            const updatedTodo = await todoSvc.updateTodo(req.params.id, req.body);
+            const formattedData = await todoSvc.editTransformDTO(req.body);
+            const updatedTodo = await todoSvc.updateTodo(req.params.id, formattedData);
+    
             if (!updatedTodo) return res.status(404).send("Todo not found");
-
+    
             res.redirect('/api/v1/todos');
         } catch (exception) {
             console.error("Error updating todo:", exception);
             next(exception);
         }
     };
+    
 
     delete = async (req, res, next) => {
         try {
